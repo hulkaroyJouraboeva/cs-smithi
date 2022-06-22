@@ -2,7 +2,6 @@
   "manifest_version": 3,
   "name": "CS Smithi",
   "version": "0.1.0",
-  "default_locale": "en",
   "description": "A plain text description",
   "icons": {},
   "author": "Stanley Chen and Hulkaroy Jouraboeva",
