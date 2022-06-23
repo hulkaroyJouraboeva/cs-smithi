@@ -1,10 +1,9 @@
 // window.onload = function() {
-  
+
+
 (function showEvents() {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
-    console.log(token);
     const eventsURL = 'https://www.googleapis.com/calendar/v3/calendars/c_9qtn0db3bh1leu1t6ueun0jutk@group.calendar.google.com/events';
-
 
     const fetch_options = {
       method: 'GET',
@@ -21,20 +20,34 @@
         const events = formattedData['items'];
         const todaysDate = removeTime(new Date().toISOString());
         const todaysEvents = [];
-        console.log(todaysDate);
-        console.log(removeTime(events[0]['start']['dateTime']));
+        
+        // grabs all events happening today and stores in todaysEvents
         for(let i = 0; i < events.length; i++) {
           if(removeTime(events[i]['start']['dateTime']) === todaysDate ) {
-            console.log('working');
             todaysEvents.push(events[i]);
           }
         }
-
+        // sorts todaysEvents
         todaysEvents.sort(function(a,b){
           const aConverted = Number(removeDate((a.start.dateTime)).replaceAll(':',''));
           const bConverted = Number(removeDate((b.start.dateTime)).replaceAll(':',''));
           return aConverted - bConverted;
         });
+
+        const timeNow = Number(removeDate(new Date().toISOString().replaceAll(':',''))); 
+        let nextEvent;
+        let startTime;
+        for(let i = 0; i < todaysEvents.length; i++) {
+          if(timeNow > Number(removeDate((todaysEvents[i].start.dateTime)).replaceAll(':',''))){
+            nextEvent = todaysEvents[i];
+            startTime = removeDate((todaysEvents[i].start.dateTime));
+            break;
+          }
+        }
+        // const displayDiv = document.getElementById('next-event');
+        // displayDiv.innerHTML = innerHTML + `<br/>${nextEvent.summary}`;
+        
+        //chrome.runtime.sendMessage({nextEvent});
       })
       .catch((error) => console.log('Error occurred: ', error));
   });

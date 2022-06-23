@@ -1,6 +1,38 @@
+body {
+  width: 710px;
+}
 button {
   border-radius: 10%;
   background-image: linear-gradient(#7CD0BD,#0E3181);
   text-align: center;
-  color: white
+  color: white;
+  margin: 5px;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#title {
+  display: flex;
+  flex-direction: column; 
+  margin-right: 40px;
+}
+
+#title h1 {
+  margin-bottom: 0px;
+}
+
+#title h1, h3 {
+  text-align: center;
+}
+
+#next-event {
+  border: solid 1px black; 
+  width: 250px;
+  height: 100px;
+  align-self: flex-start;
+  margin: 5px 5px 10px 5px;
 }
