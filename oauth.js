@@ -17,33 +17,62 @@
     
     fetch(`${eventsURL}`, fetch_options)
       .then((data) => data.json())
-      .then((formattedData) => console.log(formattedData))
+      .then((formattedData) => {
+        const events = formattedData['items'];
+        const todaysDate = removeTime(new Date().toISOString());
+        const todaysEvents = [];
+        console.log(todaysDate);
+        console.log(removeTime(events[0]['start']['dateTime']));
+        for(let i = 0; i < events.length; i++) {
+          if(removeTime(events[i]['start']['dateTime']) === todaysDate ) {
+            console.log('working');
+            todaysEvents.push(events[i]);
+          }
+        }
+
+        todaysEvents.sort(function(a,b){
+          const aConverted = Number(removeDate((a.start.dateTime)).replaceAll(':',''));
+          const bConverted = Number(removeDate((b.start.dateTime)).replaceAll(':',''));
+          return aConverted - bConverted;
+        });
+      })
       .catch((error) => console.log('Error occurred: ', error));
   });
 })();
 
 //}; this bracket goes with window.onload 
   
+function removeTime(dateTime) { 
+  return dateTime.slice(0, 10);
+}
+
+function removeDate(dateTime) {
+  return dateTime.slice(11,16);
+}
 
 
-// window.onload = function() {
-//   document.querySelector('button').addEventListener('click', function() {
-//     chrome.identity.getAuthToken({interactive: true}, function(token) {
-//       let init = {
-//         method: 'GET',
-//         async: true,
-//         headers: {
-//           Authorization: 'Bearer ' + token,
-//           'Content-Type': 'application/json'
-//         },
-//         'contentType': 'json'
-//       };
 
-//       fetch('https://people.googleapis.com/v1/contactGroups/all?maxMembers=20&key=API_KEY', init)
-//           .then((response) => response.json())
-//           .then(function(data) {
-//             console.log(data)
-//           });
-//     });
-//   });
-// };
+
+/*
+
+  Progress: 
+    Base extension is set up
+    Got Calendar Data
+    Sorted Data by date and hour
+
+
+  To Do:
+    Show the next event as popup
+      Dompare the next event time to current time (Date.now(), ISO Standard) 
+      Attach next event to DOM, minimal styling 
+    Mood Lifter/Rain Cats: 
+      quotes data stored statically
+      extension: play lofi music when click on the button above
+        <audio controls>
+          <source src="horse.ogg" type="audio/ogg">
+          <source src="horse.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      extension: random cat/dog pics/videos (without the lofi audio)
+      
+*/
