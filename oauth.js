@@ -4,7 +4,8 @@
   chrome.identity.getAuthToken({interactive: true}, function(token) {
     console.log(token);
     const eventsURL = 'https://www.googleapis.com/calendar/v3/calendars/c_9qtn0db3bh1leu1t6ueun0jutk@group.calendar.google.com/events';
-
+    // const API = 'AIzaSyBWKGUQBwaaZBuaeu9tdjD9-_fRrvIkwG4';
+    // const eventsURL = `https://www.googleapis.com/calendar/v3/calendars/c_9qtn0db3bh1leu1t6ueun0jutk@group.calendar.google.com/events?key=${API}`;
 
     const fetch_options = {
       method: 'GET',
