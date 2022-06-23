@@ -3,6 +3,9 @@
   "name": "CS Smithi",
   "version": "0.1.0",
   "description": "A plain text description",
+  "background": {
+     "service_worker": "oauth.js"
+  },
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4WYRhgJ5fLqZQVAuhg+R4j19mo6kKIHoG2puJQ0qfl60wGHi6RBP2BGiNIIYNiyNnGyhlyKvdHK7b/bADYofv+GovVemXg0iPdM39RrQ/tmF7uHLa/TIiIip9hv+ffle+hdNAQwrrNN+70e4dz+FblRtY3/+dXQrvlVVNlmKa5dkFAiB49CFscPWKT4cgpXNI8t3OK+LkqJ56yrBn80WHvR7lAtD3nIgx7NU68Jl+6rkyP7Mb7D4DpBV8dVYqvBNoq+sWzLhLK5bsg+rG2dSY0xXoV00El4vNF9D5ZDzHmDYSsQlYf2hF3h8f3ik86oFEMn/4eUk4IfVkTzcMAGO7wIDAQAB",
   "permissions": [
     "identity"
@@ -11,9 +14,6 @@
     "128": "128.png"
   },
   "author": "Stanley Chen and Hulkaroy Jouraboeva",
-  "background": {
-    "service_worker": "oauth.js"
-  },
   "action": {
     "default_popup": "popup.html"
   },

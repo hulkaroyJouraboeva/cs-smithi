@@ -1,4 +1,6 @@
-window.onload = function() {
+// window.onload = function() {
+  
+(function showEvents() {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
     console.log(token);
     const eventsURL = 'https://www.googleapis.com/calendar/v3/calendars/c_9qtn0db3bh1leu1t6ueun0jutk@group.calendar.google.com/events';
@@ -18,8 +20,11 @@ window.onload = function() {
       .then((formattedData) => console.log(formattedData))
       .catch((error) => console.log('Error occurred: ', error));
   });
-};
+})();
+
+//}; this bracket goes with window.onload 
   
+
 
 // window.onload = function() {
 //   document.querySelector('button').addEventListener('click', function() {
