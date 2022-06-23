@@ -1,0 +1,6 @@
+button {
+  border-radius: 10%;
+  background-image: linear-gradient(#7CD0BD,#0E3181);
+  text-align: center;
+  color: white
+}
